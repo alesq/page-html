@@ -5,5 +5,16 @@
   </head>
   <body>
     <p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>
+    <p id="randomNumber"></p>
+
+    <script>
+        // Generate a random integer between 1 and 100 (inclusive)
+        const min = 1;
+        const max = 100;
+        const randomInteger = Math.floor(Math.random() * (max - min + 1)) + min;
+
+        // Display the random number in the paragraph
+        document.getElementById("randomNumber").textContent = `Random number: ${randomInteger}`;
+    </script>
   </body>
 </html>
