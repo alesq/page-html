@@ -1,9 +1,25 @@
 <!doctype html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <title>Hello world!</title>
-  </head>
-  <body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Prevent horizontal scrolling */
+        }
+        #o {
+            position: absolute;
+            font-size: 24px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.3s ease; /* Smooth animation */
+        }
+    </style>
+</head>
+<body>
     <p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>
     <p id="randomNumber"></p>
 
@@ -16,5 +32,29 @@
         // Display the random number in the paragraph
         document.getElementById("randomNumber").textContent = `Random number: ${randomInteger}`;
     </script>
-  </body>
+  
+    <div id="o">o</div>
+
+    <script>
+        const oElement = document.getElementById('o');
+        let currentPosition = 0;
+
+        // Listen for touch events
+        oElement.addEventListener('touchstart', handleTouchStart, false);
+        oElement.addEventListener('touchmove', handleTouchMove, false);
+
+        let startX = 0;
+
+        function handleTouchStart(event) {
+            startX = event.touches[0].clientX;
+        }
+
+        function handleTouchMove(event) {
+            const deltaX = event.touches[0].clientX - startX;
+            currentPosition += deltaX;
+            oElement.style.transform = `translateX(${currentPosition}px)`;
+            startX = event.touches[0].clientX;
+        }
+    </script>
+</body>
 </html>
